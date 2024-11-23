@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:ProjectPRN212.ViewModel">
+    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:UserViewModel x:Key="UserVM"></viewmodel:UserViewModel>
+    <viewmodel:TableFoodViewModel x:Key="TableFoodVM"></viewmodel:TableFoodViewModel>
+    <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
+    <viewmodel:FoodViewModel x:Key="FoodVM"></viewmodel:FoodViewModel>
+</ResourceDictionary>

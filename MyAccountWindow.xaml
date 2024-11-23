@@ -1,0 +1,76 @@
+﻿<Window x:Class="ProjectPRN212.MyAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ProjectPRN212"
+        mc:Ignorable="d"
+        Title="MyAccountWindow" Height="500" Width="400"
+        DataContext="{StaticResource MainVM}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <materialDesign:PackIcon HorizontalAlignment="Center"  Width="100" Height="100" Kind="AccountCircle" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Text="{Binding LoggedInUserName}" FontSize="20" IsEnabled="False" HorizontalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="300">
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100">FullName</Label>
+                    <TextBox Text="{Binding FullName}" Width="200"></TextBox>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100">Address</Label>
+                    <TextBox Text="{Binding Address}" Width="200"></TextBox>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100">Email</Label>
+                    <TextBox Text="{Binding Email}" Width="200"></TextBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100">Role</Label>
+                    <TextBox  Text="{Binding UserRole}" Width="200" IsReadOnly="True"></TextBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="5"  Command="{Binding UpdateCommand}"
+                        Content="Update"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"/>
+                <Button Command="{Binding ChangePassword}"
+                        Grid.Column="1" Margin="5"
+                        Content="ChangePassWord"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

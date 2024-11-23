@@ -1,0 +1,354 @@
+﻿<Window x:Class="ProjectPRN212.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:ProjectPRN212"
+        xmlns:uc="clr-namespace:ProjectPRN212.UserControlFood"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Name="mainWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="Restaurant Management" Height="650" Width="900"
+        Style="{StaticResource MaterialDesignWindow}"
+        DataContext="{StaticResource MainVM}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <!--menu-->
+            <Grid Grid.Row="0">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                    <Grid.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2 4 2 4"></Setter>
+                            <Setter Property="Height" Value="55"></Setter>
+                            <Setter Property="Background" Value="Transparent"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Command="{Binding TablesCommand}" Grid.Column="0" ToolTip="Table Management">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Table Management" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="TableAdd" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Grid.Column="1" Command="{Binding FoodsCommand}" ToolTip="Food Mangement">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Food Mangement"  FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="Food" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button  Grid.Column="2" ToolTip="Report">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Report"  FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center"  Width="24" Height="24" Kind="ChartBar" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding ReportsCommand}" Grid.Column="3" ToolTip="Bill Management">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Bill Management"  FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center"  Width="24" Height="24" Kind="Cash100" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding MyAccountCommand}" Grid.Column="4" ToolTip="My Account">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="My Account"  FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center"  Width="24" Height="24" Kind="Account" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+            </Grid>
+
+
+            <!--main-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--filter-->
+                <Grid Grid.Row="0">
+                    <materialDesign:Card Margin="5">
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="5 5 10 5">
+                                    <DatePicker Width="100" VerticalAlignment="Center"
+                                                HorizontalAlignment="Left" 
+                                                materialDesign:HintAssist.Hint="Date"
+                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                                SelectedDate="{Binding CurrentDate}" IsEnabled="False"/>
+                                </Grid>
+                                <Grid Grid.Column="1" Margin="5 5 10 5">
+                                    <materialDesign:Card Width="150" Padding="0" Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                     Text="Total Table" FontSize="20"  HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Row="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   Text="{Binding CountTotalTables}" FontSize="20" />
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+                                <Grid Grid.Column="2" Margin="5 5 10 5">
+                                    <materialDesign:Card Width="150" Padding="0" Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                            Text="Used Table" FontSize="20"  HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Row="1"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                             Text="{Binding CountOccupiedTables}" FontSize="20" />            
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+                                <Grid Grid.Column="3" Margin="5 5 10 5">
+                                    <materialDesign:Card Width="150" Padding="0" Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                             Text="Empty Table" FontSize="20"  HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Row="1"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                             Text="{Binding CountEmptyTables}" FontSize="20" />        
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+
+                <!--list table-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="420"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer  Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding ListTables}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <xctk:WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Width="100" Height="50" Margin="10" Content="{Binding}"
+                    Command="{Binding DataContext.ShowBillCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    CommandParameter="{Binding}">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Green"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="Có người">
+                                                    <Setter Property="Background" Value="LightGray"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.ContentTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Tablename}" Foreground="White"/>
+                                                <TextBlock Text="{Binding Status}" Foreground="White"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Button.ContentTemplate>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    </ScrollViewer>
+
+
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="300"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0"  Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <ComboBox Grid.Row="0" Width="180"
+                                          ItemsSource="{Binding ListFoodCategory}"
+                                          DisplayMemberPath="Name"  SelectedItem="{Binding SelectedFoodCategory}" ></ComboBox>
+                                <ComboBox ItemsSource="{Binding ListFoods}"
+                                          DisplayMemberPath="Name"
+                                          SelectedItem="{Binding SelectedFood}" Grid.Row="1" Width="180"></ComboBox>
+                            </Grid>
+                            <Grid Grid.Column="1"  Margin="5">
+                                <Button Command="{Binding AddFoodCommand}"
+                                        Content="Add Food" FontSize="15" Width="120" Height="75">
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="2" Margin="5">
+                                <materialDesign:NumericUpDown AllowChangeOnScroll="True" Minimum="0" Value="{Binding Quantity}" Width="100"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <ListView ItemsSource="{Binding SelectedTableBill}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Food Name" DisplayMemberBinding="{Binding FoodName}"></GridViewColumn>
+                                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" ></GridViewColumn>
+                                        <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}"></GridViewColumn>
+                                        <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Total}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Height="60">
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Discount"></Label>
+                                    <materialDesign:NumericUpDown Value="{Binding Discount, Mode=TwoWay}"></materialDesign:NumericUpDown>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5">
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Total price"></Label>
+                                    <TextBox IsReadOnly="True" Text="{Binding TotalPrice}"></TextBox>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="3" VerticalAlignment="Top" Margin="4">
+                                <Button Command="{Binding CheckoutBillCommand}"
+                                    Content="Payment" Width="100" Height="50"></Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+
+
+
+        </Grid>
+
+
+
+    </Grid>
+
+</Window>

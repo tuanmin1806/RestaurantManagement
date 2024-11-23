@@ -1,0 +1,60 @@
+﻿<Window x:Class="ProjectPRN212.ManageTablesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ProjectPRN212"
+        mc:Ignorable="d"
+        DataContext="{StaticResource TableFoodVM}"
+        Title="ManageTablesWindow" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"></Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Cac element binding tu selected item-->
+                <materialDesign:Card Grid.Row="0" Margin="5">
+                    <WrapPanel Margin="0 0 0 3">
+                        <TextBox Text="{Binding TableName, UpdateSourceTrigger=PropertyChanged}"  Margin="5 5 15 5" Grid.Column="0" VerticalAlignment="Center"
+                      materialDesign:HintAssist.Hint="Table Name"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    </WrapPanel>
+                </materialDesign:Card>
+
+
+                <materialDesign:Card Grid.Row="1" Margin="5">
+                    <WrapPanel>
+                        <Button Command="{Binding CreateCommand}" Content="Add" Margin="5" Width="100"></Button>
+                        <TextBox HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Search by Table Name" Width="120" Margin="5"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    </WrapPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding ListTables}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Tableid}"></GridViewColumn>
+                                    <GridViewColumn Header="Table Name" DisplayMemberBinding="{Binding Tablename}"></GridViewColumn>
+                                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
